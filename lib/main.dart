@@ -86,11 +86,9 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
 
           // Drag title bar
           GestureDetector(
-            onPanUpdate: (details) async {
-              Offset position = await windowManager.getPosition();
-              await windowManager.setPosition(
-                Offset(position.dx + details.delta.dx, position.dy + details.delta.dy),
-              );
+            behavior: HitTestBehavior.translucent,
+            onPanStart: (details) {
+              windowManager.startDragging();
             },
             child: Container(
               padding: const EdgeInsets.all(10),
